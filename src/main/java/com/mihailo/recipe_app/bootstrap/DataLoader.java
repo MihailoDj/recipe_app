@@ -4,6 +4,7 @@ import com.mihailo.recipe_app.model.*;
 import com.mihailo.recipe_app.repositories.CategoryRepository;
 import com.mihailo.recipe_app.repositories.RecipeRepository;
 import com.mihailo.recipe_app.repositories.UnitOfMeasurementRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private final CategoryRepository categoryRepository;
@@ -28,6 +30,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading initial data. . .");
     }
 
     public List<Recipe> getRecipes() {
