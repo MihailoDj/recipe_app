@@ -5,6 +5,7 @@ import com.mihailo.recipe_app.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -22,4 +23,16 @@ public class RecipeServiceImpl implements RecipeService {
 
         return recipes;
     }
+
+    @Override
+    public Recipe findById(Long id) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if (!recipeOptional.isPresent())
+            throw new RuntimeException();
+
+        return recipeOptional.get();
+    }
+
+
 }
