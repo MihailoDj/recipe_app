@@ -144,6 +144,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.getCategories().add(frenchCategory);
         guacRecipe.getCategories().add(mexicanCategory);
 
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacRecipe.setSource("Simply Recipes");
+        guacRecipe.setServings(4);
+
         recipes.add(guacRecipe);
 
         //Second recipe
@@ -200,6 +204,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         tacosRecipe.getCategories().add(frenchCategory);
         tacosRecipe.getCategories().add(mexicanCategory);
+
+        tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacosRecipe.setSource("Simply Recipes");
+        tacosRecipe.setServings(4);
 
         recipes.add(tacosRecipe);
         return recipes;
