@@ -1,6 +1,7 @@
 package com.mihailo.recipe_app.controllers;
 
 import com.mihailo.recipe_app.commands.IngredientCommand;
+import com.mihailo.recipe_app.commands.RecipeCommand;
 import com.mihailo.recipe_app.commands.UnitOfMeasurementCommand;
 import com.mihailo.recipe_app.services.IngredientService;
 import com.mihailo.recipe_app.services.RecipeService;
@@ -66,5 +67,22 @@ public class IngredientController {
         log.debug("saved ingredient id:" + savedCommand.getId());
 
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+    }
+
+    @GetMapping
+    @RequestMapping("recipe/{recipeId}/ingredient/new")
+    public String newRecipe(@PathVariable String recipeId, Model model){
+
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUnitOfMeasurement(new UnitOfMeasurementCommand());
+
+        model.addAttribute("uomList",  unitOfMeasurementService.listAllUnitsOfMeasurement());
+
+        return "recipe/ingredient/ingredientform";
     }
 }
