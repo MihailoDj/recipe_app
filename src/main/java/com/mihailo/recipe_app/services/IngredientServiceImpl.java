@@ -55,7 +55,7 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
-        if (!recipeOptional.isPresent()) {
+        if(!recipeOptional.isPresent()){
 
             log.error("Recipe not found for id: " + command.getRecipeId());
             return new IngredientCommand();
@@ -68,7 +68,7 @@ public class IngredientServiceImpl implements IngredientService {
                     .filter(ingredient -> ingredient.getId().equals(command.getId()))
                     .findFirst();
 
-            if (ingredientOptional.isPresent()) {
+            if(ingredientOptional.isPresent()){
                 Ingredient ingredientFound = ingredientOptional.get();
                 ingredientFound.setDescription(command.getDescription());
                 ingredientFound.setAmount(command.getAmount());
@@ -86,5 +86,6 @@ public class IngredientServiceImpl implements IngredientService {
                     .findFirst()
                     .get());
         }
+
     }
 }
