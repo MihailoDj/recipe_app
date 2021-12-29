@@ -1,10 +1,13 @@
 package com.mihailo.recipe_app.controllers;
 
 import com.mihailo.recipe_app.commands.RecipeCommand;
+import com.mihailo.recipe_app.exceptions.NotFoundException;
 import com.mihailo.recipe_app.services.RecipeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RecipeController {
@@ -47,5 +50,14 @@ public class RecipeController {
         recipeService.deleteById(Long.parseLong(id));
 
         return "redirect:/";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("404error");
+
+        return mav;
     }
 }

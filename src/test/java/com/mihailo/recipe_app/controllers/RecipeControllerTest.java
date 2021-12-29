@@ -1,6 +1,7 @@
 package com.mihailo.recipe_app.controllers;
 
 import com.mihailo.recipe_app.commands.RecipeCommand;
+import com.mihailo.recipe_app.exceptions.NotFoundException;
 import com.mihailo.recipe_app.model.Recipe;
 import com.mihailo.recipe_app.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;

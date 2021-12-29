@@ -3,6 +3,7 @@ package com.mihailo.recipe_app.services;
 import com.mihailo.recipe_app.commands.RecipeCommand;
 import com.mihailo.recipe_app.converters.recipe.RecipeCommandToRecipe;
 import com.mihailo.recipe_app.converters.recipe.RecipeToRecipeCommand;
+import com.mihailo.recipe_app.exceptions.NotFoundException;
 import com.mihailo.recipe_app.model.Recipe;
 import com.mihailo.recipe_app.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (!recipeOptional.isPresent())
-            throw new RuntimeException();
+            throw new NotFoundException("Recipe not found.");
 
         return recipeOptional.get();
     }
