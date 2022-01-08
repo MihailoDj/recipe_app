@@ -3,9 +3,18 @@ spring:
     url: jdbc:mysql://localhost:3306/spring_recipes_dev
     username: spring_recipes_dev_user
     password: mihailo
+    platform: mysql
   jpa:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: spring_recipes_database_create.sql
